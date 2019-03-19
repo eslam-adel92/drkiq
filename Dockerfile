@@ -31,7 +31,7 @@ RUN bundle install
 COPY . .
 
 # Provide dummy data to Rails so it can pre-compile assets.
-RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://drkiq:pass@postgres/production SECRET_TOKEN=33bcbea703379cedd7055ab152741922b2765dc4d68540b935b9be8161fd379a143edebf8ed8121326fd2950e05c561d8a6be72347b2d9e99ece7327e0b7cc2c assets:precompile
+RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://drkiq:123456@postgres/drkiq SECRET_TOKEN=33bcbea703379cedd7055ab152741922b2765dc4d68540b935b9be8161fd379a143edebf8ed8121326fd2950e05c561d8a6be72347b2d9e99ece7327e0b7cc2c assets:precompile
 
 # Expose a volume so that nginx will be able to read in assets in production.
 VOLUME ["$INSTALL_PATH/public"]
