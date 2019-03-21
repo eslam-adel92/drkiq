@@ -30,6 +30,14 @@ RUN bundle install
 # over to the working directory.
 COPY . .
 
+# ENV variables from .drkiq.env
+ENV SECRET_TOKEN 33bcbea703379cedd7055ab152741922b2765dc4d68540b935b9be8161fd379a143edebf8ed8121326fd2950e05c561d8a6be72347b2d9e99ece7327e0b7cc2c
+ENV WORKER_PROCESSES 1
+ENV LISTEN_ON 0.0.0.0:8000
+ENV DATABASE_URL postgresql://drkiq:123456@postgres:5432/drkiq?encoding=utf8&pool=5&timeout=5000
+ENV CACHE_URL redis://redis:6379/0
+ENV JOB_WORKER_URL redis://redis:6379/0
+
 # Provide dummy data to Rails so it can pre-compile assets.
 RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://drkiq:123456@postgres/drkiq SECRET_TOKEN=33bcbea703379cedd7055ab152741922b2765dc4d68540b935b9be8161fd379a143edebf8ed8121326fd2950e05c561d8a6be72347b2d9e99ece7327e0b7cc2c assets:precompile
 
