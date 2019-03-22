@@ -30,5 +30,29 @@ Now the containers are running but the drkiq application container will stop as 
 ```bash
 docker-compose start drkiq && docker-compose exec drkiq bash -c 'rake db:migrate'
 ```
-kubectl exec $(kubectl get pods -l app=drkiq | awk 'NR==2 {print $1}') -- bash -c 'rake db:migrate'
+- Now you can test the app through you browser open the belo link:
+```
+http://localhost:8000
+```
 
+Next let's convert the application to a kubernetes cluster:
+- This directory is contains to 4 directory each one has the related files which make all the deployments, services and configmaps used in the cluster.
+- To run the kubernetes cluser, inside the k8s-drkiq directory there is a shell script with the name "deploy_script.sh"
+run it as below:
+```bash
+./deploy_script.sh
+```
+- Then after you make sure that the cluser is created and all the pods are running, run the below command to create the database to make the app work:
+```bash
+kubectl exec $(kubectl get pods -l app=drkiq | awk 'NR==2 {print $1}') -- bash -c 'rake db:migrate'
+```
+- After the database is created if you running the cluster on minikube, run the below command to test the app if it is working or not:
+
+```bash
+minikube service drkiq
+```
+or you can run:
+```bash
+kubectl get svc drkiq
+```
+Then open in the browser the minikube IP with the port from the prevous command.
