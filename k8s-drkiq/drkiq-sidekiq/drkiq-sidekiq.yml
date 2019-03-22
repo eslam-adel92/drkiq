@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drkiq-sidekiq
+  labels:
+    app: drkiq-sidekiq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drkiq-sidekiq
+  template:
+    metadata:
+      labels:
+        app: drkiq-sidekiq
+    spec:
+      containers:
+      - name: drkiq-sidekiq
+        image: eslam2017/drkiq_app:k8s
+        args:
+        - /bin/sh
+        - -c 
+        - bundle exec sidekiq -C config/sidekiq.yml
+        envFrom:
+        - configMapRef:
+            name: drkiq-app-config

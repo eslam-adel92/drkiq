@@ -20,20 +20,20 @@ services:
   
   drkiq:
     build: .
-#    volumes:
-#      - .:/drkiq
+    volumes:
+      - ./drkiq_app:/drkiq
     ports:
       - '8000:8000'
-  #  env_file:
-  #    - .drkiq.env
+    env_file:
+      - ./drkiq_app/.drkiq.env
   
   sidekiq:
     build: .
     command: bundle exec sidekiq -C config/sidekiq.yml
-#    volumes:
-#      - .:/drkiq
-  #  env_file:
-  #    - .drkiq.env
+    volumes:
+      - ./drkiq_app:/drkiq
+    env_file:
+      - ./drkiq_app/.drkiq.env
 volumes:
   drkiq-postgres:
   drkiq-redis:

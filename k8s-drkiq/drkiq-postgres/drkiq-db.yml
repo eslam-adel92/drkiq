@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drkiq-db
+  labels:
+    appdb: drkiqdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      appdb: drkiqdb
+  template:
+    metadata:
+      labels:
+        appdb: drkiqdb
+    spec:
+      containers:
+      - name: drkiq-db
+        image: postgres:9.4.5
+        ports:
+        - containerPort: 5432
+        envFrom:
+        - configMapRef:
+            name: postgres-config

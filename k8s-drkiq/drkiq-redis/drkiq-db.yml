@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drkiq-redis
+  labels:
+    appredis: drkiqredis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      appredis: drkiqredis
+  template:
+    metadata:
+      labels:
+        appredis: drkiqredis
+    spec:
+      containers:
+      - name: drkiq-redis
+        image: redis:3.0.5 
+        ports:
+        - containerPort: 6379

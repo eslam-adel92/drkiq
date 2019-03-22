@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drkiq
+  labels:
+    app: drkiq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: drkiq
+  template:
+    metadata:
+      labels:
+        app: drkiq
+    spec:
+      containers:
+      - name: drkiq-app
+        image: eslam2017/drkiq_app:k8s
+        ports:
+        - containerPort: 8000
+          name: web-port
+        envFrom:
+        - configMapRef:
+            name: drkiq-app-config

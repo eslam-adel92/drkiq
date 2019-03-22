@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+#  labels:
+#    app: drkiqdb
+data:
+  POSTGRES_DB: drkiq_development
+  POSTGRES_USER: drkiq
+  POSTGRES_PASSWORD: "123456"
