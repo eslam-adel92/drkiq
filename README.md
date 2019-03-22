@@ -37,8 +37,8 @@ http://localhost:8000
 
 ## Next let's convert the application to a kubernetes cluster:
 - This directory is contains to 4 directory each one has the related files which make all the deployments, services and configmaps used in the cluster.
-- In the drkiq_app and drkiq_sidekiq you will find that I've used an image called "eslam2017/drkiq_app:k8s" I've built this image and pushed it to my account to be easy to use but you are free to build and image by your self then use it it will make no diffrence.
-- To run the kubernetes cluser, inside the k8s-drkiq directory there is a shell script with the name "deploy_script.sh"
+- In the drkiq-app and drkiq-sidekiq you will find that I've used an image called "eslam2017/drkiq_app:k8s" I've built this image and pushed it to my account to be easy to use but you are free to build and image by your self then use it it will make no diffrence.
+- To run the kubernetes cluser, inside the "k8s-drkiq" directory there is a shell script with the name "deploy_script.sh"
 run it as below:
 ```bash
 ./deploy_script.sh
@@ -57,3 +57,8 @@ or you can run:
 kubectl get svc drkiq
 ```
 Then open in the browser the minikube IP with the port from the prevous command.
+
+- If you need to delete all the cluster component you need to run the below script inside the driectory "k8s-drkiq"
+```bash
+./delete_script.sh
+```
