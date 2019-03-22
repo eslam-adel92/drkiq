@@ -5,14 +5,14 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+./drkiq_app/.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
+./drkiq_app/db/*.sqlite3
+./drkiq_app/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
-!/log/.keep
-/tmp
-/.drkiq.env
+./drkiq_app/log/*
+./drkiq_app!/log/.keep
+./drkiq_app/tmp
+./drkiq_app/.drkiq.env
